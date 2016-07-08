@@ -1,0 +1,56 @@
+body {
+	position: relative;
+}
+
+#title {
+	padding-top: 50px;
+}
+
+#main-div > h2 {
+	padding-top: 55px;
+	text-decoration: underline;
+}
+
+.navbar {
+	background-color: white;
+	border: 0;
+	border-radius: 0;
+	background-image: none;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.open>a {
+	background-image: none;
+	border: 0;
+	box-shadow: none;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}
+
+.video-graph {
+	margin-top: 13px;
+}
+
+footer {
+	text-align: center;
+}
+
+#install-button {
+	margin-top: 5px;
+}
+
+.newline-function {
+	text-align: center;
+	margin: 10px 0px 10px 0px;
+}
