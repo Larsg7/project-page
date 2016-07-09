@@ -4,27 +4,27 @@
 	<title>Project 8 - Walking Robot</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- Including Bootstrap-->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 	<!-- End Bootstrap -->
-	
+
 	<!-- Video.js -->
 	<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
 
 	<!-- fancybox -->
 	<link rel="stylesheet" href="css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-	
+
 	<link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<!-- 
-	TODO: probably more Content, Latex
+<!--
+	TODO: probably more Content
 -->
 
 <!-- Navbar -->
@@ -42,8 +42,8 @@
     		<ul class="nav navbar-nav">
       			<li><a href="#description">Description</a></li>
       			<li><a href="#footage">Footage and Results</a></li>
-      			<li><a href="#details">Details</a></li> 
-      			<li><a href="#sources">Acknowledgements</a></li> 
+      			<li><a href="#details">Details</a></li>
+      			<li><a href="#sources">Acknowledgements</a></li>
       			<li><a href="#download">Download and References</a></li>
     		</ul>
   	</div>
@@ -66,13 +66,13 @@
 			<li>How the robots chooses to walk.</li>
 		</ul>
 		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network of one population is being tested before a new population is bred. As a measurement of fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, graphs and interpretations answering the questions above and more details about the controller.</p>
-		<hr>	
+		<hr>
 
 		<h2 id="footage">Footage and Results</h2>
 			<p>Let us now look into one run with a population of 100 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergend behaviours and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the graphs we used <em>gnuplot</em>.</p>
 			<p>Here you can see three robots being controlled by three different networks which weights are completely random. They are representative of the starting population. Below them you can see three graphs showing the representive motorcommands the network gave the robot over time. We will concentrate on the robots rear legs as they are mainly driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid-function we used as an activation function. The x-axis shows the time in simulation-steps. Note that all three robots have quite random commands to work with. We will see that robots with higher fitness have less random outputs.</p>
 			<p><strong>You can click on all images to enlarge them.</strong></p>
-			
+
 			<!-- Begin Results-rows -->
 			<div class="row">
 				<div class="col-md-4">
@@ -84,10 +84,10 @@
 					</div>
 					<a class ="fancybox" href="graphs/random1.svg">
 						<img src="graphs/random1.svg" class="img-responsive">
-					</a>					
+					</a>
 				</div>
 				<div class="col-md-4">
-					<div class="embed-responsive embed-responsive-16by9">		
+					<div class="embed-responsive embed-responsive-16by9">
 						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
 							<source src="video/randomRobot2.webm" type="video/webm">
 							<source src="video/randomRobot2.mp4" type="video/mp4">
@@ -98,7 +98,7 @@
 					</a>
 				</div>
 				<div class="col-md-4">
-					<div class="embed-responsive embed-responsive-16by9">		
+					<div class="embed-responsive embed-responsive-16by9">
 						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
 							<source src="video/randomRobot3.webm" type="video/webm">
 							<source src="video/randomRobot3.mp4" type="video/mp4">
@@ -120,7 +120,7 @@
 							<source src="video/robot_g5_1.webm" type="video/webm">
 							<source src="video/robot_g5_1.mp4" type="video/mp4">
 						</video>
-					</div>					
+					</div>
 				</div>
 				<div class="col-md-6">
 					<a class ="fancybox" href="graphs/robot_g5_1.svg">
@@ -139,7 +139,7 @@
 							<source src="video/robot_g10_1.webm" type="video/webm">
 							<source src="video/robot_g10_1.mp4" type="video/mp4">
 						</video>
-					</div>					
+					</div>
 				</div>
 				<div class="col-md-6">
 					<a class ="fancybox" href="graphs/robot_g10_1.svg">
@@ -147,7 +147,7 @@
 					</a>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="embed-responsive embed-responsive-16by9 video-graph">
@@ -155,7 +155,7 @@
 							<source src="video/robot_g15_1.webm" type="video/webm">
 							<source src="video/robot_g15_1.mp4" type="video/mp4">
 						</video>
-					</div>					
+					</div>
 				</div>
 				<div class="col-md-6">
 					<a class ="fancybox" href="graphs/robot_g15_1.svg">
@@ -174,7 +174,7 @@
 							<source src="video/robot_g25_1.webm" type="video/webm">
 							<source src="video/robot_g25_1.mp4" type="video/mp4">
 						</video>
-					</div>					
+					</div>
 				</div>
 				<div class="col-md-6">
 					<a class ="fancybox" href="graphs/robot_g25_1.svg">
@@ -182,7 +182,7 @@
 					</a>
 				</div>
 			</div>
-			
+
 			<div class="row">
 				<div class="col-md-6">
 					<div class="embed-responsive embed-responsive-16by9 video-graph">
@@ -190,7 +190,7 @@
 							<source src="video/robot_g50_1.webm" type="video/webm">
 							<source src="video/robot_g50_1.mp4" type="video/mp4">
 						</video>
-					</div>					
+					</div>
 				</div>
 				<div class="col-md-6">
 					<a class ="fancybox" href="graphs/robot_g40_1.svg">
@@ -198,7 +198,7 @@
 					</a>
 				</div>
 			</div>
-	
+
 		<div class="row">
 			<div class="col-md-6">
 				<p>The last video shows the endresult of this run, at generation 50 the robot is not improving anymore as you can see in the first graph on the right showing the highest fitness of each generation (details about the fitness function can be found in the next section), the graph next to that shows the average fitness of each generation. In the commands-graph you can see that the controller has found a very stable solution, it moves the legs as fast as possible from one side to the other. There is not a lot of room for further improvements.</p>
@@ -217,13 +217,13 @@
 		</div>
 
 		<!-- End Results-rows -->
-		<hr>	
+		<hr>
 
 		<h2 id="details">Details</h2>
-		<p>Here we will describe the details about the robot, network and controller.</p> 
+		<p>Here we will describe the details about the robot, network and controller.</p>
 		<h3>The robot</h3>
 		<p>For our project we used one of the robots included in the LpzRobots-download. It is called "vierbeiner". We changed the robot only marginally, only including three extra sensors to get the position necessary to calculate the fitness of a given network.</p>
-		
+
 		<h3>The network</h3>
 		<div class="row">
 			<div class="col-md-3"></div>
@@ -237,13 +237,21 @@
 			<img src="https://latex.codecogs.com/gif.latex?\frac{1}{1&plus;e^{-x}}"/>
 		</div>
 		<p>where x is the sum of all inputs each of them multiplied with the respective weight of the synapse. An important point is that the outputs of the network lie between 0 and 1.</p>
-		<p>The input values propagate through the network as follows:</p>
-		
+		<p>The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
+		<p>To calculate the values that each neuron recieves we multiply the input (as a column-vector) with the matrix for the first four weights (w1 through w4):</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;i1&space;&&space;i2&space;\end{pmatrix}&space;*&space;\begin{pmatrix}w1&space;&&space;w3\\w2&space;&&space;w4\end{pmatrix}&space;=&space;\begin{pmatrix}&space;n1&space;&&space;n2&space;\end{pmatrix}"/>
+		</div>
+		<p>Applying now the sigmoid-function to n1 and n2 and multiplying the resultung column-vector with the matrix for the eight weights z1 through z8 we get our output-vector:</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;n1'&space;&&space;n2'&space;\end{pmatrix}&space;*&space;\begin{pmatrix}&space;z1&space;&&space;z3&space;&&space;z5&space;&&space;z7\\&space;z2&space;&&space;z4&space;&&space;z6&space;&&space;z8&space;\end{pmatrix}&space;=&space;\begin{pmatrix}&space;o1&space;&&space;o2&space;&&space;o3&space;&&space;o4&space;\end{pmatrix}"/>
+		</div>
+		<p>The last step is to apply the sigmoid-function once more to the output-vector.</p>
 
 		<h3>The controller</h3>
-		<p>As a basis for our controller we used the "walkcontroller" included with the vierbeiner-robot. Here we connected the controller with the neural network giving it two inputs depending on the time t (or better: simulation-step) with an parameter s changing the speed and a paramter v changing the strength of the input:</p>
+		<p>As a basis for our controller we used the "walkcontroller" included with the vierbeiner-robot. Here we connected the controller with the neural network giving it two inputs depending on the time <em>t</em> (or better: simulation-step) with an parameter <em>s</em> changing the speed and a paramter <em>v</em> changing the strength of the input. Increasing the speed by reducing <em>s</em> will result in faster movements of the robot, changing <em>v</em> changes how strongly the network react to input-changes.</p>
 		<div class="newline-function">
-			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;sin(t/s)*v\\&space;cos(t/s)*v&space;\end{pmatrix}">
+			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;sin(t/s)*v&&space;cos(t/s)*v&space;\end{pmatrix}">
 		</div>
 		<p>We found that giving the network more inputs (one could assume that one input per leg would be optimal) made the result more chaotic and not improved it. The output of the network is directly put back into the simulation as the motor-commands for the robot.</p>
 		<p>At the beginning of the simulation the controller initialises a fixed population (which size can be manually set) with random weights on the synapses. When the simulation starts, the first network is used to control the robot and its fitness is measured. After some arbitrary time (we chose 500 steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
@@ -252,7 +260,7 @@
 			<img src="https://latex.codecogs.com/gif.latex?e^{d}-1" />
 		</div>
 		<p>d is the distance in the direction of the x-axis (forward).</p>
-		<p>After a generation has finished two networks are chosen (using the fitness as a probability) to "breed" a new network. During this "breeding-process" the weights of the "parents" form the new weights with a chance of 1/2 using the weight of one network or the other. After this process of combining the weights of both "parent-network" the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts again.</p> 
+		<p>After a generation has finished two networks are chosen (using the fitness as a probability) to "breed" a new network. During this "breeding-process" the weights of the "parents" form the new weights with a chance of 1/2 using the weight of one network or the other. After this process of combining the weights of both "parent-network" the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts again.</p>
 		<hr>
 
 		<h2 id="sources">Acknowledgements, Authors and Contact</h2>
@@ -272,7 +280,7 @@
 		</ul>
 		<p><a href="download">Here</a> you can download the project files.</p>
 		<p>The project uses the <a href="http://robot.informatik.uni-leipzig.de/software/">LpzRobots</a>-package developed by the University of Leipzig. An additional dependency is the <a href="http://arma.sourceforge.net/docs.html">Armadillo</a>-package which needs to be installed.</p>
-	
+
 		<button id="file-button" class="btn" data-toggle="collapse" data-target="#file-details">Details about the files included.</button>
 
 		<div id="file-details" class="collapse">
@@ -299,8 +307,8 @@
 				</li>
 			</ul>
 		</div>
-		 
-	
+
+
 	</div>
 </div>
 
@@ -317,12 +325,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	<!-- Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	<!-- fancybox -->
 	<script type="text/javascript" src="js/jquery.fancybox.pack.js?v=2.1.5"></script>
-	
-	<!-- video.js -->	
+
+	<!-- video.js -->
 	<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
 
 	<!-- Custom script -->
