@@ -11,6 +11,10 @@ body {
 	text-decoration: underline;
 }
 
+p {
+	text-align: justify;
+}
+
 .navbar {
 	background-color: white;
 	border: 0;
@@ -38,11 +42,21 @@ body {
     }
 }
 
+.small-pic-caption {
+	position: absolute;
+	top: 15%;
+	left: 20%;
+}
+
+.under-graph {
+	margin-top: 10px;
+}
+
 .video-graph {
 	margin-top: 13px;
 }
 
-footer {
+footer p {
 	text-align: center;
 }
 
