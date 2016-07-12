@@ -15,6 +15,10 @@ p {
 	text-align: justify;
 }
 
+.header-param {
+	margin-top: 30px;
+}
+
 .navbar {
 	background-color: white;
 	border: 0;
