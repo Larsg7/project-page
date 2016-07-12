@@ -60,18 +60,18 @@
 
 	<div id="main-div">
 		<h2 id="description">Description</h2>
-		<p>The goal of this project is to program a self-learning robot which can teach itself how to walk. Doing this should not include hardcoding any movements but relies instead on a neural network controlling the motors of our robot while an arthificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
+		<p>The goal of this project is to program a self-learning robot, teaching itself how to walk. Doing this should not include hardcoding of any movements but instead relies on a neural network controlling the motors of our robot. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
 		<p>Interesting results could be:
 		<ul>
 			<li>The underlying connection between the movements of different motors.</li>
 			<li>How the fitness of the population changes over time depending on the starting parameters.</li>
-			<li>How the robots chooses to walk.</li>
+			<li>How the robot chooses to walk.</li>
 		</ul>
-		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network of one population is being tested before a new population is bred. As a measurement of fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, graphs and interpretations answering the questions above and more details about the controller.</p>
+		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network in one population is being tested before a new population is bred. As a measurement of fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, graphs and interpretations answering the questions above and more details about the controller.</p>
 		<hr>
 
 		<h2 id="footage">Footage and Results</h2>
-			<h3>1) Example Run</h3>
+			<h3>I) Example Run</h3>
 			<p>Let us now look into one run with a population of 100 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergend behaviours and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the graphs we used <em>gnuplot</em>.</p>
 
 			<h4>Generation 1</h4>
@@ -215,7 +215,7 @@
 			</div>
 		</div>
 
-		<h3>2) Parameters</h3>
+		<h3>II) Parameters</h3>
 		<p class="under-graph">In the last part of this section we will look at some of the parameters available to us (we will not show any videos as the results look the same as above):</p>
 		<ul>
 			<li>Chance of mutation <em>m</em></li>
@@ -302,7 +302,7 @@
 		</p>
 
 		<h4>Type of fitness function <em>a(x)</em></h4>
-		<!--	linear, sqrt, exp(x*x) -->
+		<!--	linear, sqrt, exp(x*x) x^2-->
 		<div class="row">
 			<div class="col-md-3">
 				<a class ="fancybox" href="graphs/active/active=linear.svg">
