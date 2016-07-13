@@ -60,20 +60,20 @@
 
 	<div id="main-div">
 		<h2 id="description">Description</h2>
-		<p>The goal of this project is to program a self-learning robot, teaching itself how to walk. Doing this should not include hardcoding of any movements but instead relies on a neural network controlling the motors of our robot. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
+		<p>The goal of this project is to program a self-learning robot which should be able to teach itself how to walk. Doing this should not include hardcoding of any movements but instead relies on a neural network controlling the motors. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
 		<p>Interesting results could be:
 		<ul>
 			<li>The underlying connection between the movements of different motors.</li>
-			<li>How the fitness of the population changes over time depending on the starting parameters.</li>
+			<li>How the Fitness of the population changes over time depending on the starting parameters.</li>
 			<li>How the robot chooses to walk.</li>
 		</ul>
-		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network in one population is being tested before a new population is bred. As a measurement of fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, graphs and interpretations answering the questions above and more details about the controller.</p>
+		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network in a generation is being tested before a new generation is bred. As a measurement of Fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, more details about the controller and plots and interpretations answering the questions above.</p>
 		<hr>
 
 		<h2 id="footage">Footage and Results</h2>
 
-			<h3>A) Example Run</h3>
-			<p>Let us now look into one run with a population of 50 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergent behaviors and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the graphs we used <em>gnuplot</em>.</p>
+			<h3>An Example Run</h3>
+			<p>Let us now look into a run with a population of 50 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergent behaviors and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the plots we used <em>gnuplot</em>.</p>
 
 			<h4>Generation 1</h4>
 			<p><strong>You can click on all images to enlarge them.</strong></p>
@@ -114,7 +114,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Here you can see three robots being controlled by three different networks which weights are completely random. They are representative of the starting population. Below them you find three graphs showing the motorcommands the network gave the robot over time. We will concentrate on the robots rear legs as they are the main force driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid-function we used as an activation function. The x-axis shows the time in simulation-steps. Note that all three robots have quite random commands to work with. We will see that robots with higher fitness have less random outputs.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Here you can see three robots being controlled by three different networks with randomly initialized weights. These are representing the first generation. Below them you find three plots showing the motorcommands given to the robot by the network at any given time. We will concentrate on the rear legs as they are the main force driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid function we used as an activation function. The x-axis shows the time in simulation steps. Note that all three robots have quite random commands to work with.</p>
 
 			<h4>Generation 5</h4>
 			<div class="row">
@@ -132,7 +132,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> The video above shows the best robot at the end of generation 5. Look at the graph besides the video showing the same commands as the ones above. One can see the commands for the right rear hip and knee have a phase-difference of pi, so the robot moves its right hip back while moving its left leg forward. Which you can also observe in the video.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> The video above shows the best robot at the end of generation 5. Look at the plot besides the video showing the same commands as the ones above. One can see the commands for the right rear hip and knee have a phase difference of pi, so the robot moves its right hip back while moving its left leg forward, which is something you can also observe in the video.</p>
 
 			<h4>Generation 10</h4>
 			<div class="row">
@@ -167,7 +167,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Now we reached generation 15, the system has developed a not-so-smooth but quite effective walking pattern which also shows in the graph.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> We have now reached generation 15, the system has developed a not-so-smooth but quite effective walking pattern which is apparent in the plot.</p>
 
 			<h4>Generation 25</h4>
 			<div class="row">
@@ -185,7 +185,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> At generation 25 the robot not only manages to get much further than before, in the graph one can see as well the system "choosing" a far more effective and simpler walking algorithm. From now on the best networks all "try" to make big and fast steps to get as far as possible in the given time-interval. There are no short pauses anymore and the movements of both legs are almost perfectly in phase.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> For generation 25 the robot not only manages to get much further than before, looking at the plot one can even see the system "choosing" a far more effective and simpler walking algorithm. From now on the best networks will all "try" to make big and fast steps to get as far as possible in the given time interval. There are no short pauses anymore and the movements of both legs are almost perfectly in phase.</p>
 
 			<h4>Generation 50</h4>
 			<div class="row">
@@ -206,8 +206,8 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-right"></span> The last video shows the end result of this run, at generation 50 the robot is not improving anymore as you can see in the first graph on the right showing the highest fitness of each generation (details about the fitness function can be found in the next section), the graph next to that shows the average fitness of each generation. In the commands-graph you can see that the controller has found a very stable solution, it moves the legs as fast as possible from one side to the other. There is not a lot of room for further improvements.</p>
-				<p>Back to the graph showing the fitness over time one can clearly see the benefit of using artificial evolution, the system finds a stable solution quite fast. It will take time to optimize the solution but solves the underlying problem quickly.</p>
+				<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-right"></span> This last video shows the final result of the run. At generation 50 the robot is not improving anymore as you can see in the first plot on the right showing the highest Fitness of each generation (details about the Fitness function can be found in the next section). The plot next to that shows the average Fitness of each generation. The commands plot shows that the controller has found a very stable solution by moving the legs as fast as possible from one side to the other. There is not a lot of room for further improvements.</p>
+				<p>Looking back at the plot showing the Fitness over time one can clearly see the benefit of using artificial evolution, as the system finds a stable solution quite fast. It will take time to optimize the solution but solves the underlying problem quite quickly.</p>
 			</div>
 			<div class="col-md-6">
 				<a class ="fancybox" href="graphs/robot-fitness-1.svg">
@@ -216,12 +216,12 @@
 			</div>
 		</div>
 
-		<h3>B) Parameters</h3>
-		<p class="under-graph">In the last part of this section we will look at some of the parameters available to us (we will not show any videos as the results look the same as above):</p>
+		<h3> Parameters</h3>
+		<p class="under-graph">The last part of this section will focus at some of the parameters available to us (we will not show any videos as the results look the same as above):</p>
 		<ul>
 			<li>Chance of mutation <em>m</em></li>
 			<li>Number of networks per generation <em>n</em></li>
-			<li>Type of fitness function <em>f(x)</em></li>
+			<li>Type of Fitness function <em>f(x)</em></li>
 		</ul>
 		<h4 class="header-param">Chance of mutation <em>m</em></h4>
 		<div class="row">
@@ -258,12 +258,12 @@
 			<p class="small-pic-caption"><em>m</em> = 0</p>
 		</div>
 			<div class="col-md-9">
-				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> At first we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average fitness values by different values for <em>m</em>. We have not changed any other values compared to the example run above (which had a value of <em>m</em>=0.05). Note that we changed the range of the y-axis compared to the example above.</p>
+				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> As a first step we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average Fitness using different values for <em>m</em>. Every other value stays unchanged compared to the example run above, which used a value of <em>m</em>=0.05). Note that the y-axis now has a smaller scale compared to the example above.</p>
 				<p>
-					You can immediately see the great role that mutation plays, with a value of 1 the weights are completely random in each generation, so we will never become better than any of the networks in the starting population. Even with <em>m</em>=0.5 the fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we got an interesting behaviour as the curve spikes at certain generations quiet high. If we look at the average fitness on the other hand we do not see any difference. But <em>m</em>=0.25 seems to some kind of a sweet spot even when we do not get an overall learning effect. <em>m</em>=0.1 has almost the same outcome as <em>m</em>=0.25 but lacks the spikes, the randomness still hinders any fast learning, we do get a smoother curve.
+					You can immediately see how great a role mutation plays. A value of 1 causes the weights to be completely random in each generation, meaning we will never become better than any of the networks of the first generation. Even with <em>m</em>=0.5 the Fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we observe an interesting behaviour as the curve spikes quite high for certain generations. On the other hand, if we take a look at the average Fitness we do not see any difference. Apparently a value of<em>m</em>=0.25 seems to hit some kind of a sweet spot, even if we do not get an overall learning effect. A value of <em>m</em>=0.1 shows mostly the same result as <em>m</em>=0.25, with the exception of there being no spikes. The randomness still hinders any fast learning, we do get a smoother curve though.
 				</p>
 				<p>
-					Of great interests is <em>m</em>=0 as well as it shows that zero mutation also is not the way to go. Compared to the other graphs it shows a greater success but the robot stops to learn at some point, all networks are the same after reaching generation 40.
+					Of great interest is <em>m</em>=0, as it shows that zero mutation is not the way to go either. Compared to the other plots it shows greater success but the robot stops to learn at some point. All networks are the same after reaching generation 40.
 				</p>
 			</div>
 		</div>
@@ -296,13 +296,13 @@
 			</div>
 		</div>
 		<p>
-			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. By using a total of 2500 networks tested (as in the examples above: 50 networks per generation, 50 generations) we can compare different sizes to each other.
+			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. By testing a total of 2500 networks (as in the examples above: 50 networks per generation, 50 generations) we can compare different sizes to each other.
 		</p>
 		<p>
-			In the first graph one can see that choosing a population size which is to small will reduce the learning rate of the system significantly. There is just not enough variation available. The two graphs <em>n</em>=25 and <em>n</em>=100 look very similar to the one in the example run while <em>n</em>=250 shows that the other extreme hinders also the learning process as there is too much variation and the "breeding-process" is to random (you can clearly see that <em>n</em>=25 is before generation 10 at a much higher fitness-level than <em>n</em>=250).
+			The first plot shows that choosing too small of a population size will reduce the systems learning rate significantly. There is just not enough variation available. The next two plots for <em>n</em>=25 and <em>n</em>=100 look very similar to the result of the example run while <em>n</em>=250 shows a significant drop off. Apparently the other extreme hinders the learning process aswell as there is too much variation and the "breeding process" is too random (you can clearly see that <em>n</em>=25 is at a much higher Fitness level than <em>n</em>=250 prior to generation 10).
 		</p>
 
-		<h4 class="header-param">Type of fitness function <em>f(x)</em></h4>
+		<h4 class="header-param">Type of Fitness function <em>f(x)</em></h4>
 		<!--	linear, sqrt, exp(x*x) x^2-->
 		<div class="row">
 			<div class="col-md-3">
@@ -331,10 +331,10 @@
 			</div>
 		</div>
 		<p>
-			<span class="glyphicon glyphicon-chevron-up"></span> To compare different functions to each other we used the standard fitness function to draw the graphs and the new one internally to "breed" the networks together. Apparently all of them are less suitable compared to the one we used in the example. Only with the x² one we were able to reproduce a similar result. Let us now look at each of them individually.
+			<span class="glyphicon glyphicon-chevron-up"></span> To compare different functions to each other we used the standard Fitness function for the plot and the new one internally to "breed" the networks together. Apparently all of them are less suitable compared to the one we used in the example. Only with the x² one we were able to reproduce an even remotely similar result. Lets now look at each of them individually.
 		</p>
 		<p>
-			The reason why the fitness in the linear-case is so low, is probably the small difference in fitness for a network which achieves one more step than another. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt-one has another problem, it is quiet steep at lower distances, but becomes very flat as the distance increases so the difference between to similar networks is big at the beginning but small at higher generations (with higher average distance achieved). The opposite to the linear-case is the exp(x²) as we have here an enormous difference between similar networks so the breeding will mostly take place with the same networks, the few ones having the highest fitness. That hinders the generation of better networks through including different "genes". The x²-case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
+			The reason why the Fitness is so low for the linear case is probably the small difference in Fitness for each network. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt one has another problem, as it iss quite steep at lower distances, but becomes very flat for increasing distances, so the difference between two similar networks is large at the beginning but small for later generations (with higher average distance achieved). The opposite to the linear case is the exp(x²). There is an enormous difference between similar networks resulting in a very high chance to breed with the same few networks, namely the ones with the highest Fitness. This circumstance hinders the process of generating better networks through including different "genes". The x² case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
 		</p>
 		<!-- End Results-rows -->
 		<hr>
@@ -342,9 +342,9 @@
 
 
 		<h2 id="details">Details</h2>
-		<p>Here we will describe the details about the robot, network and controller.</p>
+		<p>Below you can find a more detailed describtion of the robot, aswell as network and controller.</p>
 		<h3>The robot</h3>
-		<p>For our project we used one of the robots included in the LpzRobots-download. It is called "vierbeiner". We changed the robot only marginally, only including three extra sensors to get the position necessary to calculate the fitness of a given network. The robot has 10 motors for the legs (two at each front-leg, three at each leg in the rear).</p>
+		<p>For the project we used one of the prebuild robots included in the LpzRobots-download. It is called "vierbeiner". The oreset itself was kept mostly intact, with only notable change being the addition of three extra sensors used to measure the position in order to calculate the Fitness of a given network. The robot has 10 motors for the legs (two at each front leg and three for each at the rear).</p>
 
 		<h3>The network</h3>
 		<div class="row">
@@ -354,34 +354,34 @@
 			</a>
 			<div class="col-md-3"></div>
 		</div>
-		<p>The network we used (and wrote our self) is a single-layered neural network with non-timedependent weights. All inputs are connected to the layer of neurons which are in turn connected to the outputs. As an activation function we used the sigmoid function</p>
+		<p>The <i>selfmade</i> network used is a single layered neural network with non-timedependent weights. All inputs are connected to the layer of neurons which are in turn connected to the outputs. As an activation function we used the sigmoid function</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\frac{1}{1&plus;e^{-x}}"/>
 		</div>
-		<p>where x is the sum of all inputs each of them multiplied with the respective weight of the synapse. An important point is that the outputs of the network lie between 0 and 1. The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
-		<p>To calculate the values that each neuron receives we multiply the input (as a column-vector) with the matrix for the first four weights (w1 through w4):</p>
+		<p>where x is the sum of all inputs multiplied with the respective weight of the synapse. An important point is that the networks outputs lie between 0 and 1. The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
+		<p>To calculate the values for each neuron we multiply the input (as a column vector) with the matrix containing the first four weights (w1 through w4):</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;i1&space;&&space;i2&space;\end{pmatrix}&space;*&space;\begin{pmatrix}w1&space;&&space;w3\\w2&space;&&space;w4\end{pmatrix}&space;=&space;\begin{pmatrix}&space;n1&space;&&space;n2&space;\end{pmatrix}"/>
 		</div>
-		<p>Applying now the sigmoid-function to n1 and n2 and multiplying the resulting column-vector with the matrix for the eight weights z1 through z8 we get our output-vector:</p>
+		<p>Applying the sigmoid function to n1 and n2 and multiplying the resulting column vector with the matrix for the eight weights z1 through z8 results in the output vector:</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;n1'&space;&&space;n2'&space;\end{pmatrix}&space;*&space;\begin{pmatrix}&space;z1&space;&&space;z3&space;&&space;z5&space;&&space;z7\\&space;z2&space;&&space;z4&space;&&space;z6&space;&&space;z8&space;\end{pmatrix}&space;=&space;\begin{pmatrix}&space;o1&space;&&space;o2&space;&&space;o3&space;&&space;o4&space;\end{pmatrix}"/>
 		</div>
-		<p>The last step is to apply the sigmoid-function once more to the output-vector.</p>
+		<p>The last step is to apply the sigmoid function once more to the output vector.</p>
 
 		<h3>The controller</h3>
-		<p>As a basis for our controller we used the "walkcontroller" included with the vierbeiner-robot. Here we connected the controller with the neural network giving it two inputs depending on the time <em>t</em> (or better: simulation-step) with an parameter <em>s</em> changing the speed and a parameter <em>v</em> changing the strength of the input. Increasing the speed by reducing <em>s</em> will result in faster movements of the robot, changing <em>v</em> changes how strongly the network react to input-changes.</p>
+		<p>As a basis for our controller we used the "walkcontroller" included with the vierbeiner-robot. Here we connected the controller with the neural network giving it two time-dependant inputs with a parameter <em>s</em> changing the speed and a parameter <em>v</em> changing the strength of the input. Increasing the speed by reducing <em>s</em> will result in faster movements of the robot, changing <em>v</em> modifies how strongly the network reacts to input changes.</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;sin(t/s)*v&&space;cos(t/s)*v&space;\end{pmatrix}">
 		</div>
-		<p>We found that giving the network more inputs (one could assume that one input per leg would be optimal) made the result more chaotic and not improved it. The output of the network is directly put back into the simulation as the motor-commands for the robot.</p>
-		<p>At the beginning of the simulation the controller initializes a fixed population (which size can be manually set) with random weights on the synapses. When the simulation starts, the first network is used to control the robot and its fitness is measured. After some arbitrary time (we chose 500 steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
-		<p>The fitnessfunction we used is</p>
+		<p>We found that giving the network more inputs (one could assume that one input per leg would be optimal) made the result more chaotic instead of improving it. The output of the network is directly put back into the simulation as the motor commands for the robot.</p>
+		<p>At the beginning of the simulation the controller initializes the first generation (which size can be manually set) with random weights on the synapses. When the simulation starts, the first network is used to control the robot and its Fitness is measured. After some arbitrary time (we chose 500 simulation steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
+		<p>The Fitness function we used is</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?e^{d}-1" />
 		</div>
-		<p>d is the distance in the direction of the x-axis (forward).</p>
-		<p>After a generation has finished two networks are chosen (using the fitness as a probability) to "breed" a new network. During this "breeding-process" the weights of the "parents" form the new weights with a chance of 1/2 using the weight of one network or the other. After this process combining the weights of both "parent-network" the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts again.</p>
+		<p>with d being the distance in the direction of the x-axis (forward).</p>
+		<p>After a generation has finished two networks are chosen, using the Fitness value as a means to weighten the probability to use the network to "breed" a new network. During this "breeding process" the weights of the "parents" form the new weights with a chance of 50% to use the weight of one network over the other. After this process of combining the weights of both "parent" networks the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts over again.</p>
 		<hr>
 
 
@@ -397,10 +397,10 @@
 
 
 		<h2 id="download">Download and References</h2>
-		<p>Our references were as follows:</p>
+		<p>As references we used the following material:</p>
 		<ul>
 			<li><a href="http://natureofcode.com/"><em>The Nature Of Code</em> by Daniel Shiffman</a></li>
-			<li><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Wikipedia-article about genetic algorithms</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Wikipedia article about genetic algorithms</a></li>
 			<li><a href="https://www.youtube.com/playlist?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU">Videoseries about neural networks.</a></li>
 		</ul>
 		<p><a href="download">Here</a> you can download the project files.</p>
@@ -412,7 +412,7 @@
 			<ul>
 				<li>The actual robot is configured in <code>vierbeiner.*</code>.</li>
 				<li>The controller is configured in <code>walkcontroller.*</code></li>
-				<li><code>class.simpleNeuralNetwork.h</code> contains the network-class.</li>
+				<li><code>class.simpleNeuralNetwork.h</code> contains the network class.</li>
 			</ul>
 		</div>
 		<br>
@@ -424,8 +424,8 @@
 				<li>Execute <code>make &amp;&amp; ./start</code> inside the folder "vierbeiner-robot".</li>
 				<li>While running the program will
 					<ul>
-						<li>print to the console the current network/generation and its fitness/highest fitness.</li>
-						<li>write the highest and average fitness into a file called <code>fitness</code> in the format <code>generation highest-fitness average-fitness</code>.</li>
+						<li>print to the console the current network/generation and its Fitness/highest Fitness.</li>
+						<li>write the highest and average Fitness into a file called <code>fitness</code> in the format <code>generation highest-fitness average-fitness</code>.</li>
 						<li>write the motorcommands of the best network after each generation into a file called <code>motorData/motorOutput#</code> (where "#" stands for the current generation).</li>
 						<li>use at the end of the last generation the best network.</li>
 					</ul>
