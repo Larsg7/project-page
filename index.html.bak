@@ -1,0 +1,464 @@
+<!Doctype html>
+<html>
+<head>
+	<title>Project 8 - Walking Robot</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Including Bootstrap-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<!-- End Bootstrap -->
+
+	<!-- Video.js -->
+	<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+
+	<!-- fancybox -->
+	<link rel="stylesheet" href="css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+
+	<link rel="stylesheet" href="css/stylesheet.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!--
+	TODO: probably more Content
+-->
+
+<!-- Navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+    	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+        		<span class="icon-bar"></span>
+      		</button>
+      		<a class="navbar-brand" href="#title">Walking-Robot</a>
+    	</div>
+	<div class="collapse navbar-collapse" id="myNavbar">
+    		<ul class="nav navbar-nav">
+      			<li><a href="#description">Description</a></li>
+      			<li><a href="#footage">Footage and Results</a></li>
+      			<li><a href="#details">Details</a></li>
+      			<li><a href="#sources">Acknowledgements</a></li>
+      			<li><a href="#download">Download and References</a></li>
+    		</ul>
+  	</div>
+	</div>
+</nav>
+<!-- End Navbar -->
+
+<!-- Content -->
+<div class="container">
+	<div class="text-center" id="title">
+		<h1>Walking Robot<br><small>using a single layered neural network, artificial evolution and supervised learning<br>by Lars Gröber and Philipp Arnold</small></h1>
+	</div>
+
+
+	<div id="main-div">
+		<h2 id="description">Description</h2>
+		<p>The goal of this project is to program a self-learning robot, teaching itself how to walk. Doing this should not include hardcoding of any movements but instead relies on a neural network controlling the motors of our robot. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
+		<p>Interesting results could be:
+		<ul>
+			<li>The underlying connection between the movements of different motors.</li>
+			<li>How the fitness of the population changes over time depending on the starting parameters.</li>
+			<li>How the robot chooses to walk.</li>
+		</ul>
+		<p>The network uses two neurons to calculate the motor signals from given inputs. Every network in one population is being tested before a new population is bred. As a measurement of fitness we used the distance the robot traveled in a set time interval. Below you find videos showing the evolution of the robot, graphs and interpretations answering the questions above and more details about the controller.</p>
+		<hr>
+
+		<h2 id="footage">Footage and Results</h2>
+
+			<h3>A) Example Run</h3>
+			<p>Let us now look into one run with a population of 50 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergent behaviors and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the graphs we used <em>gnuplot</em>.</p>
+
+			<h4>Generation 1</h4>
+			<p><strong>You can click on all images to enlarge them.</strong></p>
+
+			<!-- Begin Results-rows -->
+			<div class="row">
+				<div class="col-md-4">
+					<div class="embed-responsive embed-responsive-16by9">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/randomRobot1.webm" type="video/webm">
+							<source src="video/randomRobot1.mp4" type="video/mp4">
+						</video>
+					</div>
+					<a class ="fancybox" href="graphs/random1.svg">
+						<img src="graphs/random1.svg" class="img-responsive">
+					</a>
+				</div>
+				<div class="col-md-4">
+					<div class="embed-responsive embed-responsive-16by9">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/randomRobot2.webm" type="video/webm">
+							<source src="video/randomRobot2.mp4" type="video/mp4">
+						</video>
+					</div>
+					<a class ="fancybox" href="graphs/random2.svg">
+						<img src="graphs/random2.svg" class="img-responsive">
+					</a>
+				</div>
+				<div class="col-md-4">
+					<div class="embed-responsive embed-responsive-16by9">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/randomRobot3.webm" type="video/webm">
+							<source src="video/randomRobot3.mp4" type="video/mp4">
+						</video>
+					</div>
+					<a class ="fancybox" href="graphs/random3.svg">
+						<img src="graphs/random3.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Here you can see three robots being controlled by three different networks which weights are completely random. They are representative of the starting population. Below them you find three graphs showing the motorcommands the network gave the robot over time. We will concentrate on the robots rear legs as they are the main force driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid-function we used as an activation function. The x-axis shows the time in simulation-steps. Note that all three robots have quite random commands to work with. We will see that robots with higher fitness have less random outputs.</p>
+
+			<h4>Generation 5</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="embed-responsive embed-responsive-16by9 video-graph">
+						<video controls loop muted preload="auto" class=" embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/robot_g5_1.webm" type="video/webm">
+							<source src="video/robot_g5_1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a class ="fancybox" href="graphs/robot_g5_1.svg">
+						<img src="graphs/robot_g5_1.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> The video above shows the best robot at the end of generation 5. Look at the graph besides the video showing the same commands as the ones above. One can see the commands for the right rear hip and knee have a phase-difference of pi, so the robot moves its right hip back while moving its left leg forward. Which you can also observe in the video.</p>
+
+			<h4>Generation 10</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="embed-responsive embed-responsive-16by9 video-graph">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/robot_g10_1.webm" type="video/webm">
+							<source src="video/robot_g10_1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a class ="fancybox" href="graphs/robot_g10_1.svg">
+						<img src="graphs/robot_g10_1.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+
+			<h4>Generation 15</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="embed-responsive embed-responsive-16by9 video-graph">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/robot_g15_1.webm" type="video/webm">
+							<source src="video/robot_g15_1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a class ="fancybox" href="graphs/robot_g15_1.svg">
+						<img src="graphs/robot_g15_1.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Now we reached generation 15, the system has developed a not-so-smooth but quite effective walking pattern which also shows in the graph.</p>
+
+			<h4>Generation 25</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="embed-responsive embed-responsive-16by9 video-graph">
+						<video controls loop muted preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/robot_g25_1.webm" type="video/webm">
+							<source src="video/robot_g25_1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a class ="fancybox" href="graphs/robot_g25_1.svg">
+						<img src="graphs/robot_g25_1.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> At generation 25 the robot not only manages to get much further than before, in the graph one can see as well the system "choosing" a far more effective and simpler walking algorithm. From now on the best networks all "try" to make big and fast steps to get as far as possible in the given time-interval. There are no short pauses anymore and the movements of both legs are almost perfectly in phase.</p>
+
+			<h4>Generation 50</h4>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="embed-responsive embed-responsive-16by9 video-graph">
+						<video controls loop preload="auto" class="embed-responsive-item video-js vjs-default-skin" data-setup="{}">
+							<source src="video/robot_g50_1.webm" type="video/webm">
+							<source src="video/robot_g50_1.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<a class ="fancybox" href="graphs/robot_g40_1.svg">
+						<img src="graphs/robot_g40_1.svg" class="img-responsive">
+					</a>
+				</div>
+			</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-right"></span> The last video shows the end result of this run, at generation 50 the robot is not improving anymore as you can see in the first graph on the right showing the highest fitness of each generation (details about the fitness function can be found in the next section), the graph next to that shows the average fitness of each generation. In the commands-graph you can see that the controller has found a very stable solution, it moves the legs as fast as possible from one side to the other. There is not a lot of room for further improvements.</p>
+				<p>Back to the graph showing the fitness over time one can clearly see the benefit of using artificial evolution, the system finds a stable solution quite fast. It will take time to optimize the solution but solves the underlying problem quickly.</p>
+			</div>
+			<div class="col-md-6">
+				<a class ="fancybox" href="graphs/robot-fitness-1.svg">
+					<img class="img-responsive" src="graphs/robot-fitness-1.svg"></img>
+				</a>
+			</div>
+		</div>
+
+		<h3>B) Parameters</h3>
+		<p class="under-graph">In the last part of this section we will look at some of the parameters available to us (we will not show any videos as the results look the same as above):</p>
+		<ul>
+			<li>Chance of mutation <em>m</em></li>
+			<li>Number of networks per generation <em>n</em></li>
+			<li>Type of fitness function <em>f(x)</em></li>
+		</ul>
+		<h4 class="header-param">Chance of mutation <em>m</em></h4>
+		<div class="row">
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/mutate/mutate=1_g50.svg">
+					<img src="graphs/mutate/mutate=1_g50.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>m</em> = 1</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/mutate/mutate=0.5_g50.svg">
+					<img src="graphs/mutate/mutate=0.5_g50.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>m</em> = 0.5</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/mutate/mutate=0.25_g50.svg">
+					<img src="graphs/mutate/mutate=0.25_g50.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>m</em> = 0.25</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/mutate/mutate=0.1_g50.svg">
+					<img src="graphs/mutate/mutate=0.1_g50.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>m</em> = 0.1</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/mutate/mutate=0_g50.svg">
+				<img src="graphs/mutate/mutate=0_g50.svg" class="img-responsive">
+			</a>
+			<p class="small-pic-caption"><em>m</em> = 0</p>
+		</div>
+			<div class="col-md-9">
+				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> At first we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average fitness values by different values for <em>m</em>. We have not changed any other values compared to the example run above (which had a value of <em>m</em>=0.05). Note that we changed the range of the y-axis compared to the example above.</p>
+				<p>
+					You can immediately see the great role that mutation plays, with a value of 1 the weights are completely random in each generation, so we will never become better than any of the networks in the starting population. Even with <em>m</em>=0.5 the fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we got an interesting behaviour as the curve spikes at certain generations quiet high. If we look at the average fitness on the other hand we do not see any difference. But <em>m</em>=0.25 seems to some kind of a sweet spot even when we do not get an overall learning effect. <em>m</em>=0.1 has almost the same outcome as <em>m</em>=0.25 but lacks the spikes, the randomness still hinders any fast learning, we do get a smoother curve.
+				</p>
+				<p>
+					Of great interests is <em>m</em>=0 as well as it shows that zero mutation also is not the way to go. Compared to the other graphs it shows a greater success but the robot stops to learn at some point, all networks are the same after reaching generation 40.
+				</p>
+			</div>
+		</div>
+
+		<h4 class="header-param">Number of networks <em>n</em></h4>
+		<div class="row">
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/popsize/popsize=10_g250.svg">
+					<img src="graphs/popsize/popsize=10_g250.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>n</em> = 10</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/popsize/popsize=25_g100.svg">
+					<img src="graphs/popsize/popsize=25_g100.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>n</em> = 25</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/popsize/popsize=100_g25.svg">
+					<img src="graphs/popsize/popsize=100_g25.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>n</em> = 100</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/popsize/popsize=250_g10.svg">
+					<img src="graphs/popsize/popsize=250_g10.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>n</em> = 250</p>
+			</div>
+		</div>
+		<p>
+			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. By using a total of 2500 networks tested (as in the examples above: 50 networks per generation, 50 generations) we can compare different sizes to each other.
+		</p>
+		<p>
+			In the first graph one can see that choosing a population size which is to small will reduce the learning rate of the system significantly. There is just not enough variation available. The two graphs <em>n</em>=25 and <em>n</em>=100 look very similar to the one in the example run while <em>n</em>=250 shows that the other extreme hinders also the learning process as there is too much variation and the "breeding-process" is to random (you can clearly see that <em>n</em>=25 is before generation 10 at a much higher fitness-level than <em>n</em>=250).
+		</p>
+
+		<h4 class="header-param">Type of fitness function <em>f(x)</em></h4>
+		<!--	linear, sqrt, exp(x*x) x^2-->
+		<div class="row">
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/fitnessfunc/func=linear.svg">
+					<img src="graphs/fitnessfunc/func=linear.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>f(x)</em> = x</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/fitnessfunc/func=sqrt.svg">
+					<img src="graphs/fitnessfunc/func=sqrt.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>f(x)</em> = sqrt(x)</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/fitnessfunc/func=power2.svg">
+					<img src="graphs/fitnessfunc/func=power2.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>f(x)</em> = exp(x*x)</p>
+			</div>
+			<div class="col-md-3">
+				<a class ="fancybox" href="graphs/fitnessfunc/func=topower2.svg">
+					<img src="graphs/fitnessfunc/func=topower2.svg" class="img-responsive">
+				</a>
+				<p class="small-pic-caption"><em>f(x)</em> = x²</p>
+			</div>
+		</div>
+		<p>
+			<span class="glyphicon glyphicon-chevron-up"></span> To compare different functions to each other we used the standard fitness function to draw the graphs and the new one internally to "breed" the networks together. Apparently all of them are less suitable compared to the one we used in the example. Only with the x² one we were able to reproduce a similar result. Let us now look at each of them individually.
+		</p>
+		<p>
+			The reason why the fitness in the linear-case is so low, is probably the small difference in fitness for a network which achieves one more step than another. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt-one has another problem, it is quiet steep at lower distances, but becomes very flat as the distance increases so the difference between to similar networks is big at the beginning but small at higher generations (with higher average distance achieved). The opposite to the linear-case is the exp(x²) as we have here an enormous difference between similar networks so the breeding will mostly take place with the same networks, the few ones having the highest fitness. That hinders the generation of better networks through including different "genes". The x²-case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
+		</p>
+		<!-- End Results-rows -->
+		<hr>
+
+
+
+		<h2 id="details">Details</h2>
+		<p>Here we will describe the details about the robot, network and controller.</p>
+		<h3>The robot</h3>
+		<p>For our project we used one of the robots included in the LpzRobots-download. It is called "vierbeiner". We changed the robot only marginally, only including three extra sensors to get the position necessary to calculate the fitness of a given network. The robot has 10 motors for the legs (two at each front-leg, three at each leg in the rear).</p>
+
+		<h3>The network</h3>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<a class ="fancybox col-md-6" href="images/neuralNet.png">
+				<img class="img-responsive" src="images/neuralNet.png">
+			</a>
+			<div class="col-md-3"></div>
+		</div>
+		<p>The network we used (and wrote our self) is a single-layered neural network with non-timedependent weights. All inputs are connected to the layer of neurons which are in turn connected to the outputs. As an activation function we used the sigmoid function</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/svg.latex?\frac{1}{1&plus;e^{-x}}"/>
+		</div>
+		<p>where x is the sum of all inputs each of them multiplied with the respective weight of the synapse. An important point is that the outputs of the network lie between 0 and 1. The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
+		<p>To calculate the values that each neuron receives we multiply the input (as a column-vector) with the matrix for the first four weights (w1 through w4):</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/svg.latex?\begin{pmatrix}&space;i1&space;&&space;i2&space;\end{pmatrix}&space;*&space;\begin{pmatrix}w1&space;&&space;w3\\w2&space;&&space;w4\end{pmatrix}&space;=&space;\begin{pmatrix}&space;n1&space;&&space;n2&space;\end{pmatrix}"/>
+		</div>
+		<p>Applying now the sigmoid-function to n1 and n2 and multiplying the resulting column-vector with the matrix for the eight weights z1 through z8 we get our output-vector:</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/svg.latex?\begin{pmatrix}&space;n1'&space;&&space;n2'&space;\end{pmatrix}&space;*&space;\begin{pmatrix}&space;z1&space;&&space;z3&space;&&space;z5&space;&&space;z7\\&space;z2&space;&&space;z4&space;&&space;z6&space;&&space;z8&space;\end{pmatrix}&space;=&space;\begin{pmatrix}&space;o1&space;&&space;o2&space;&&space;o3&space;&&space;o4&space;\end{pmatrix}"/>
+		</div>
+		<p>The last step is to apply the sigmoid-function once more to the output-vector.</p>
+
+		<h3>The controller</h3>
+		<p>As a basis for our controller we used the "walkcontroller" included with the vierbeiner-robot. Here we connected the controller with the neural network giving it two inputs depending on the time <em>t</em> (or better: simulation-step) with an parameter <em>s</em> changing the speed and a parameter <em>v</em> changing the strength of the input. Increasing the speed by reducing <em>s</em> will result in faster movements of the robot, changing <em>v</em> changes how strongly the network react to input-changes.</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/svg.latex?\begin{pmatrix}&space;sin(t/s)*v&&space;cos(t/s)*v&space;\end{pmatrix}">
+		</div>
+		<p>We found that giving the network more inputs (one could assume that one input per leg would be optimal) made the result more chaotic and not improved it. The output of the network is directly put back into the simulation as the motor-commands for the robot.</p>
+		<p>At the beginning of the simulation the controller initializes a fixed population (which size can be manually set) with random weights on the synapses. When the simulation starts, the first network is used to control the robot and its fitness is measured. After some arbitrary time (we chose 500 steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
+		<p>The fitnessfunction we used is</p>
+		<div class="newline-function">
+			<img src="https://latex.codecogs.com/svg.latex?e^{d}-1" />
+		</div>
+		<p>d is the distance in the direction of the x-axis (forward).</p>
+		<p>After a generation has finished two networks are chosen (using the fitness as a probability) to "breed" a new network. During this "breeding-process" the weights of the "parents" form the new weights with a chance of 1/2 using the weight of one network or the other. After this process combining the weights of both "parent-network" the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts again.</p>
+		<hr>
+
+
+
+		<h2 id="sources">Acknowledgements, Authors and Contact</h2>
+		<ul>
+			<li><strong>Acknowledgement</strong> We would like to thank the members of the group Prof. C. Gros, especially Laura Martin and Hendrik Wernecke, for their help developing this project.</li>
+			<li><strong>About the authors</strong> Lars Gröber and Philipp Arnold are both Bachelor's students at Goethe University Frankfurt (Main).</li>
+			<li>For questions, suggestions and comments please contact <a href="mailto:lars.groeber@stud.uni-frankfurt.de">lars.groeber@stud.uni-frankfurt.de</a>.</li>
+		</ul>
+		<hr>
+
+
+
+		<h2 id="download">Download and References</h2>
+		<p>Our references were as follows:</p>
+		<ul>
+			<li><a href="http://natureofcode.com/"><em>The Nature Of Code</em> by Daniel Shiffman</a></li>
+			<li><a href="https://en.wikipedia.org/wiki/Genetic_algorithm">Wikipedia-article about genetic algorithms</a></li>
+			<li><a href="https://www.youtube.com/playlist?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU">Videoseries about neural networks.</a></li>
+		</ul>
+		<p><a href="download">Here</a> you can download the project files.</p>
+		<p>The project uses the <a href="http://robot.informatik.uni-leipzig.de/software/">LpzRobots</a>-package developed by the University of Leipzig. An additional dependency is the <a href="http://arma.sourceforge.net/docs.html">Armadillo</a>-package which needs to be installed.</p>
+
+		<button id="file-button" class="btn" data-toggle="collapse" data-target="#file-details">Details about the files included.</button>
+
+		<div id="file-details" class="collapse">
+			<ul>
+				<li>The actual robot is configured in <code>vierbeiner.*</code>.</li>
+				<li>The controller is configured in <code>walkcontroller.*</code></li>
+				<li><code>class.simpleNeuralNetwork.h</code> contains the network-class.</li>
+			</ul>
+		</div>
+		<br>
+		<button id="install-button" class="btn" data-toggle="collapse" data-target="#install-details">Details about how to use the program.</button>
+
+		<div id="install-details" class="collapse">
+			<ul>
+				<li>Move the files into the folder <code>YOUR-LPZROBOTS-DIRECTORY/ode-robots/simulation/</code>.</li>
+				<li>Execute <code>make &amp;&amp; ./start</code> inside the folder "vierbeiner-robot".</li>
+				<li>While running the program will
+					<ul>
+						<li>print to the console the current network/generation and its fitness/highest fitness.</li>
+						<li>write the highest and average fitness into a file called <code>fitness</code> in the format <code>generation highest-fitness average-fitness</code>.</li>
+						<li>write the motorcommands of the best network after each generation into a file called <code>motorData/motorOutput#</code> (where "#" stands for the current generation).</li>
+						<li>use at the end of the last generation the best network.</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+	</div>
+</div>
+
+<!-- Footer -->
+<div class="container">
+	<hr>
+	<footer>
+		<p class="noJustify">This website uses the <a href="http://getbootstrap.com/">bootstrap-Theme</a>, <a href="http://videojs.com">video.js</a> and <a href="http://fancyapps.com/fancybox/">fancybox</a>. We do not take any responsibility for the content of the webpages linked here.</p>
+	</footer>
+</div>
+<!-- End Content -->
+
+	<!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!-- fancybox -->
+	<script type="text/javascript" src="js/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+	<!-- video.js -->
+	<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+
+	<!-- Custom script -->
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

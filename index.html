@@ -7,25 +7,22 @@
 
 	<!-- Including Bootstrap-->
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<!-- End Bootstrap -->
 
 	<!-- Video.js -->
-	<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+	<link href="css/video-js.css" rel="stylesheet">
 
 	<!-- fancybox -->
 	<link rel="stylesheet" href="css/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 
+	<!-- Custom stylesheet -->
 	<link rel="stylesheet" href="css/stylesheet.css">
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<!--
-	TODO: probably more Content
--->
 
 <!-- Navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -53,6 +50,7 @@
 
 <!-- Content -->
 <div class="container">
+
 	<div class="text-center" id="title">
 		<h1>Walking Robot<br><small>using a single layered neural network, artificial evolution and supervised learning<br>by Lars Gröber and Philipp Arnold</small></h1>
 	</div>
@@ -60,7 +58,7 @@
 
 	<div id="main-div">
 		<h2 id="description">Description</h2>
-		<p>The goal of this project is to program a self-learning robot which should be able to teach itself how to walk. Doing this should not include hardcoding of any movements but instead relies on a neural network controlling the motors. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
+		<p>The goal of this project is to program a self-learning robot which is able to teach itself how to walk. Doing this should not include hardcoding of any movements, but instead relies on a neural network controlling the motors. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
 		<p>Interesting results could be:
 		<ul>
 			<li>The underlying connection between the movements of different motors.</li>
@@ -114,7 +112,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Here you can see three robots being controlled by three different networks with randomly initialized weights. These are representing the first generation. Below them you find three plots showing the motorcommands given to the robot by the network at any given time. We will concentrate on the rear legs as they are the main force driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid function we used as an activation function. The x-axis shows the time in simulation steps. Note that all three robots have quite random commands to work with.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> Here you can see three robots being controlled by three different networks with randomly initialized weights. These are representing the first generation. Below them you find three plots showing the motor commands given to the robot by the network at any given time. We will concentrate on the rear legs as they are the main force driving the robot forward. The flat bits indicate that the network "maxed out" the sigmoid function we used as an activation function. The x-axis shows the time in simulation steps. Note that all three robots have quite random commands to work with.</p>
 
 			<h4>Generation 5</h4>
 			<div class="row">
@@ -167,7 +165,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> We have now reached generation 15, the system has developed a not-so-smooth but quite effective walking pattern which is apparent in the plot.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> We have now reached generation 15, the system has developed a not-so-smooth but quite effective walking pattern, which is apparent in the plot.</p>
 
 			<h4>Generation 25</h4>
 			<div class="row">
@@ -206,8 +204,8 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-right"></span> This last video shows the final result of the run. At generation 50 the robot is not improving anymore as you can see in the first plot on the right showing the highest Fitness of each generation (details about the Fitness function can be found in the next section). The plot next to that shows the average Fitness of each generation. The commands plot shows that the controller has found a very stable solution by moving the legs as fast as possible from one side to the other. There is not a lot of room for further improvements.</p>
-				<p>Looking back at the plot showing the Fitness over time one can clearly see the benefit of using artificial evolution, as the system finds a stable solution quite fast. It will take time to optimize the solution but solves the underlying problem quite quickly.</p>
+				<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span><span class="glyphicon glyphicon-chevron-right"></span> This last video shows the final result of the run. At generation 50 the robot is not improving anymore as you can see in the first plot on the right showing the highest Fitness of each generation (details about the Fitness function can be found in the next section). The plot next to that shows the average Fitness of each generation. The commands plot shows that the controller has found a very stable solution by moving the legs as quickly as possible from one side to the other. There is not a lot of room for further improvements.</p>
+				<p>Looking back at the plot showing the Fitness over time one can clearly see the benefit of using artificial evolution, as the system finds a stable solution quite fast. It will take time to optimize the solution, but it solves the underlying problem quickly.</p>
 			</div>
 			<div class="col-md-6">
 				<a class ="fancybox" href="graphs/robot-fitness-1.svg">
@@ -260,7 +258,7 @@
 			<div class="col-md-9">
 				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> As a first step we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average Fitness using different values for <em>m</em>. Every other value stays unchanged compared to the example run above, which used a value of <em>m</em>=0.05). Note that the y-axis now has a smaller scale compared to the example above.</p>
 				<p>
-					You can immediately see how great a role mutation plays. A value of 1 causes the weights to be completely random in each generation, meaning we will never become better than any of the networks of the first generation. Even with <em>m</em>=0.5 the Fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we observe an interesting behaviour as the curve spikes quite high for certain generations. On the other hand, if we take a look at the average Fitness we do not see any difference. Apparently a value of<em>m</em>=0.25 seems to hit some kind of a sweet spot, even if we do not get an overall learning effect. A value of <em>m</em>=0.1 shows mostly the same result as <em>m</em>=0.25, with the exception of there being no spikes. The randomness still hinders any fast learning, we do get a smoother curve though.
+					You can immediately see how great a role mutation plays. A value of one causes the weights to be completely random in each generation, meaning we will never become better than any of the networks of the first generation. Even with <em>m</em>=0.5 the Fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we observe an interesting behaviour as the curve spikes quite high for certain generations. On the other hand, if we take a look at the average Fitness we do not see any difference. Apparently a value of <em>m</em>=0.25 seems to hit some kind of a sweet spot, even if we do not get an overall learning effect. A value of <em>m</em>=0.1 shows mostly the same result as <em>m</em>=0.25, with the exception of there being no spikes. The randomness still hinders any fast learning, we do get a smoother curve though.
 				</p>
 				<p>
 					Of great interest is <em>m</em>=0, as it shows that zero mutation is not the way to go either. Compared to the other plots it shows greater success but the robot stops to learn at some point. All networks are the same after reaching generation 40.
@@ -296,10 +294,10 @@
 			</div>
 		</div>
 		<p>
-			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. By testing a total of 2500 networks (as in the examples above: 50 networks per generation, 50 generations) we can compare different sizes to each other.
+			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. We can compare different sizes to each other by testing a total of 2500 networks (as in the examples above: 50 networks per generation, 50 generations).
 		</p>
 		<p>
-			The first plot shows that choosing too small of a population size will reduce the systems learning rate significantly. There is just not enough variation available. The next two plots for <em>n</em>=25 and <em>n</em>=100 look very similar to the result of the example run while <em>n</em>=250 shows a significant drop off. Apparently the other extreme hinders the learning process aswell as there is too much variation and the "breeding process" is too random (you can clearly see that <em>n</em>=25 is at a much higher Fitness level than <em>n</em>=250 prior to generation 10).
+			The first plot shows that choosing too small of a population size will reduce the systems learning rate significantly. There is just not enough variation available. The next two plots for <em>n</em>=25 and <em>n</em>=100 look very similar to the result of the example run while <em>n</em>=250 shows a significant drop off. Apparently the other extreme hinders the learning process as well as there is too much variation and the "breeding process" is too random (you can clearly see that <em>n</em>=25 is at a much higher Fitness level than <em>n</em>=250 prior to generation 10).
 		</p>
 
 		<h4 class="header-param">Type of Fitness function <em>f(x)</em></h4>
@@ -334,17 +332,16 @@
 			<span class="glyphicon glyphicon-chevron-up"></span> To compare different functions to each other we used the standard Fitness function for the plot and the new one internally to "breed" the networks together. Apparently all of them are less suitable compared to the one we used in the example. Only with the x² one we were able to reproduce an even remotely similar result. Lets now look at each of them individually.
 		</p>
 		<p>
-			The reason why the Fitness is so low for the linear case is probably the small difference in Fitness for each network. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt one has another problem, as it iss quite steep at lower distances, but becomes very flat for increasing distances, so the difference between two similar networks is large at the beginning but small for later generations (with higher average distance achieved). The opposite to the linear case is the exp(x²). There is an enormous difference between similar networks resulting in a very high chance to breed with the same few networks, namely the ones with the highest Fitness. This circumstance hinders the process of generating better networks through including different "genes". The x² case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
+			The reason the Fitness is so low for the linear case is probably the small difference in Fitness for each network. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt one has another problem, as it is quite steep at lower distances, but becomes very flat for increasing distances, so the difference between two similar networks is large at the beginning but small for later generations (with higher average distance achieved). The opposite of the linear case is the exp(x²). There is an enormous difference between similar networks resulting in a very high chance to breed with the same few networks, namely the ones with the highest Fitness. This circumstance hinders the process of generating better networks through including different "genes". The x² case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
 		</p>
 		<!-- End Results-rows -->
 		<hr>
 
 
-
 		<h2 id="details">Details</h2>
-		<p>Below you can find a more detailed describtion of the robot, aswell as network and controller.</p>
+		<p>Below you can find a more detailed description of the robot, as well as network and controller.</p>
 		<h3>The robot</h3>
-		<p>For the project we used one of the prebuild robots included in the LpzRobots-download. It is called "vierbeiner". The oreset itself was kept mostly intact, with only notable change being the addition of three extra sensors used to measure the position in order to calculate the Fitness of a given network. The robot has 10 motors for the legs (two at each front leg and three for each at the rear).</p>
+		<p>For the project we used one of the prebuild robots included in the LpzRobots download. It is called "vierbeiner". The code itself was kept mostly intact, with the only notable change being the addition of three extra sensors used to measure the position in order to calculate the Fitness of a given network. The robot has 10 motors for the legs (two at each front leg and three for each at the rear).</p>
 
 		<h3>The network</h3>
 		<div class="row">
@@ -354,11 +351,11 @@
 			</a>
 			<div class="col-md-3"></div>
 		</div>
-		<p>The <i>selfmade</i> network used is a single layered neural network with non-timedependent weights. All inputs are connected to the layer of neurons which are in turn connected to the outputs. As an activation function we used the sigmoid function</p>
+		<p>The <i>self-made</i> network used is a single layered neural network with non-timedependent weights. All inputs are connected to the layer of neurons which are in turn connected to the outputs. As an activation function we used the sigmoid function</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\frac{1}{1&plus;e^{-x}}"/>
 		</div>
-		<p>where x is the sum of all inputs multiplied with the respective weight of the synapse. An important point is that the networks outputs lie between 0 and 1. The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
+		<p>where x is the sum of all inputs multiplied with the respective weights of the synapse. An important point is that the networks outputs lie between 0 and 1. The input values propagate through the network as follows (here we use the image above as an example, the actual number of nodes may vary):</p>
 		<p>To calculate the values for each neuron we multiply the input (as a column vector) with the matrix containing the first four weights (w1 through w4):</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;i1&space;&&space;i2&space;\end{pmatrix}&space;*&space;\begin{pmatrix}w1&space;&&space;w3\\w2&space;&&space;w4\end{pmatrix}&space;=&space;\begin{pmatrix}&space;n1&space;&&space;n2&space;\end{pmatrix}"/>
@@ -406,7 +403,7 @@
 		<p><a href="download">Here</a> you can download the project files.</p>
 		<p>The project uses the <a href="http://robot.informatik.uni-leipzig.de/software/">LpzRobots</a>-package developed by the University of Leipzig. An additional dependency is the <a href="http://arma.sourceforge.net/docs.html">Armadillo</a>-package which needs to be installed.</p>
 
-		<button id="file-button" class="btn" data-toggle="collapse" data-target="#file-details">Details about the files included.</button>
+		<button id="file-button" class="btn" data-toggle="collapse" data-target="#file-details">Details about the files included.</button><br>
 
 		<div id="file-details" class="collapse">
 			<ul>
@@ -415,7 +412,9 @@
 				<li><code>class.simpleNeuralNetwork.h</code> contains the network class.</li>
 			</ul>
 		</div>
-		<br>
+
+
+
 		<button id="install-button" class="btn" data-toggle="collapse" data-target="#install-details">Details about how to use the program.</button>
 
 		<div id="install-details" class="collapse">
@@ -441,22 +440,23 @@
 <div class="container">
 	<hr>
 	<footer>
-		<p class="noJustify">This website uses the <a href="http://getbootstrap.com/">bootstrap-Theme</a>, <a href="http://videojs.com">video.js</a> and <a href="http://fancyapps.com/fancybox/">fancybox</a>. We do not take any responsibility for the content of the webpages linked here.</p>
+		<p class="noJustify">This website uses the <a href="http://getbootstrap.com/">bootstrap-theme</a>, <a href="http://videojs.com">video.js</a> and <a href="http://fancyapps.com/fancybox/">fancybox</a>. We do not take any responsibility for the content of the webpages linked here.</p>
 	</footer>
 </div>
+
 <!-- End Content -->
 
 	<!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/jquery-2.2.4.min.js"></script>
 
 	<!-- Bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 	<!-- fancybox -->
 	<script type="text/javascript" src="js/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 	<!-- video.js -->
-	<script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
+	<script src="js/video.js"></script>
 
 	<!-- Custom script -->
 	<script type="text/javascript" src="js/script.js"></script>
