@@ -58,7 +58,7 @@
 
 	<div id="main-div">
 		<h2 id="description">Description</h2>
-		<p>The goal of this project is to program a self-learning robot which is able to teach itself how to walk. Doing this should not include hardcoding of any movements, but instead relies on a neural network controlling the motors. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
+		<p>The goal of this project is to program a self-learning robot which is able to teach itself how to walk. Doing this should not include hardcoding of any movements, but instead rely on a neural network controlling the motors. An artificial evolution algorithm finds the most efficient configuration of the network using a supervised learning technique.</p>
 		<p>Interesting results could be:
 		<ul>
 			<li>The underlying connection between the movements of different motors.</li>
@@ -71,7 +71,7 @@
 		<h2 id="footage">Footage and Results</h2>
 
 			<h3>An Example Run</h3>
-			<p>Let us now look into a run with a population of 50 and a total of 50 generations. We will not only show the state of the robots at several points in the run but also discuss emergent behaviors and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the plots we used <em>gnuplot</em>.</p>
+			<p>Let us now take a look at a run with a population of 50 and a total of 50 generations. We will not only show the state of the robots at several points but also discuss emergent behaviors and patterns. All videos are created using a program called <em>simple screen recorder</em>, for the plots we used <em>gnuplot</em>.</p>
 
 			<h4>Generation 1</h4>
 			<p><strong>You can click on all images to enlarge them.</strong></p>
@@ -130,7 +130,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> The video above shows the best robot at the end of generation 5. Look at the plot besides the video showing the same commands as the ones above. One can see the commands for the right rear hip and knee have a phase difference of pi, so the robot moves its right hip back while moving its left leg forward, which is something you can also observe in the video.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> The video above shows the best robot at the end of generation 5. Looking at the plot, one can see the commands for the right rear hip and knee have a phase difference of pi, making the robot move its right hip back while moving its left leg forward.</p>
 
 			<h4>Generation 10</h4>
 			<div class="row">
@@ -183,7 +183,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> For generation 25 the robot not only manages to get much further than before, looking at the plot one can even see the system "choosing" a far more effective and simpler walking algorithm. From now on the best networks will all "try" to make big and fast steps to get as far as possible in the given time interval. There are no short pauses anymore and the movements of both legs are almost perfectly in phase.</p>
+			<p class="under-graph"><span class="glyphicon glyphicon-chevron-up"></span> For generation 25 the robot not only manages to get much further than before, looking at the plot one can even see the system "choosing" a simpler and far more effective motion sequence. From now on the best networks will "try" to make big and fast steps to get as far as possible in the given time interval. There are no short pauses anymore and the movements of both legs are almost perfectly in phase.</p>
 
 			<h4>Generation 50</h4>
 			<div class="row">
@@ -256,7 +256,7 @@
 			<p class="small-pic-caption"><em>m</em> = 0</p>
 		</div>
 			<div class="col-md-9">
-				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> As a first step we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average Fitness using different values for <em>m</em>. Every other value stays unchanged compared to the example run above, which used a value of <em>m</em>=0.05). Note that the y-axis now has a smaller scale compared to the example above.</p>
+				<p><span class="glyphicon glyphicon-chevron-left"></span> <span class="glyphicon glyphicon-chevron-up"></span> As a first step we will determine the role of mutation (see the section <a href="#details">details</a> for further information). From left to right you can see the highest and average Fitness using different values for <em>m</em>. Every other value stays unchanged compared to the example run above, which used a value of <em>m</em>=0.05. Note that the y-axis now has a smaller scale compared to the example above.</p>
 				<p>
 					You can immediately see how great a role mutation plays. A value of one causes the weights to be completely random in each generation, meaning we will never become better than any of the networks of the first generation. Even with <em>m</em>=0.5 the Fitness stays extremely low (the small spikes are due to random fluctuations). At <em>m</em>=0.25 we observe an interesting behaviour as the curve spikes quite high for certain generations. On the other hand, if we take a look at the average Fitness we do not see any difference. Apparently a value of <em>m</em>=0.25 seems to hit some kind of a sweet spot, even if we do not get an overall learning effect. A value of <em>m</em>=0.1 shows mostly the same result as <em>m</em>=0.25, with the exception of there being no spikes. The randomness still hinders any fast learning, we do get a smoother curve though.
 				</p>
@@ -294,7 +294,7 @@
 			</div>
 		</div>
 		<p>
-			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size now. We can compare different sizes to each other by testing a total of 2500 networks (as in the examples above: 50 networks per generation, 50 generations).
+			<span class="glyphicon glyphicon-chevron-up"></span> Back at <em>m</em>=0.05 we want to investigate the importance of the population size. We compare sizes by testing a total of 2500 networks (as in the examples above: 50 networks per generation, 50 generations).
 		</p>
 		<p>
 			The first plot shows that choosing too small of a population size will reduce the systems learning rate significantly. There is just not enough variation available. The next two plots for <em>n</em>=25 and <em>n</em>=100 look very similar to the result of the example run while <em>n</em>=250 shows a significant drop off. Apparently the other extreme hinders the learning process as well as there is too much variation and the "breeding process" is too random (you can clearly see that <em>n</em>=25 is at a much higher Fitness level than <em>n</em>=250 prior to generation 10).
@@ -332,7 +332,7 @@
 			<span class="glyphicon glyphicon-chevron-up"></span> To compare different functions to each other we used the standard Fitness function for the plot and the new one internally to "breed" the networks together. Apparently all of them are less suitable compared to the one we used in the example. Only with the x² one we were able to reproduce an even remotely similar result. Lets now look at each of them individually.
 		</p>
 		<p>
-			The reason the Fitness is so low for the linear case is probably the small difference in Fitness for each network. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt one has another problem, as it is quite steep at lower distances, but becomes very flat for increasing distances, so the difference between two similar networks is large at the beginning but small for later generations (with higher average distance achieved). The opposite of the linear case is the exp(x²). There is an enormous difference between similar networks resulting in a very high chance to breed with the same few networks, namely the ones with the highest Fitness. This circumstance hinders the process of generating better networks through including different "genes". The x² case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
+			The reason the Fitness is so low for the linear case is probably the small difference in Fitness for each network. Especially in higher generations the breeding algorithm is still taking networks with a much lower distance into account. The sqrt one has a similar problem, as it is quite steep at lower distances, but becomes very flat for increasing distances, so the difference between two similar networks is large at the beginning but small for later generations (with higher average distance achieved). The opposite of the linear case is the exp(x²). There is an enormous difference between similar networks resulting in a very high chance to breed with the same few networks, namely the ones with the highest Fitness. This circumstance hinders the process of generating better networks through including different "genes". The x² case seems to be appropriate as we have small differences between networks with smaller distances and larger between networks which achieve slightly higher distances.
 		</p>
 		<!-- End Results-rows -->
 		<hr>
