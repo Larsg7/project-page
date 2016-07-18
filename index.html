@@ -322,7 +322,7 @@
 				<p class="small-pic-caption"><em>f(x)</em> = exp(x*x)</p>
 			</div>
 			<div class="col-md-3">
-				<a class ="fancybox" href="graphs/fitnessfunc/func=linear.svg">
+				<a class ="fancybox" href="graphs/fitnessfunc/func=topower2.svg">
 					<img src="graphs/fitnessfunc/func=topower2.svg" class="img-responsive">
 				</a>
 				<p class="small-pic-caption"><em>f(x)</em> = x²</p>
@@ -372,13 +372,57 @@
 			<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix}&space;sin(t/s)*v&&space;cos(t/s)*v&space;\end{pmatrix}">
 		</div>
 		<p>We found that giving the network more inputs (one could assume that one input per leg would be optimal) made the result more chaotic instead of improving it. The output of the network is directly put back into the simulation as the motor commands for the robot.</p>
-		<p>At the beginning of the simulation the controller initializes the first generation (which size can be manually set) with random weights on the synapses. When the simulation starts, the first network is used to control the robot and its Fitness is measured. After some arbitrary time (we chose 500 simulation steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
+
+		<h3>Genetic Algorithm</h3>
+		<p>As a mean to improve networks jumping from one generation to the next we used a genetic algorithm. It can be summarized as follows:</p>
+		<br>
+		<div style="padding-left: 20px">
+			<p><strong>SETUP:</strong></p>
+				<ul>
+					<li>Step 1: Initialize. Create a population of N elements, each with randomly generated DNA (weights on the synapses).</li>
+				</ul>
+			<p><strong>LOOP:</strong></p>
+				<ul>
+					<li>Step 2: Selection. Evaluate the fitness of each element of the population and build a mating pool.</li>
+					<li>Step 3: Reproduction. Repeat N times:
+						<ol>
+							<li>Pick two parents with probability according to relative fitness.</li>
+							<li>Crossover - create a “child” by combining the DNA of these two parents.</li>
+							<li>Mutation - mutate the child’s DNA based on a given probability.</li>
+							<li>Add the new child to a new population.</li>
+						</ol>
+					</li>
+					<li>Step 4. Replace the old population with the new population and return to Step 2.</li>
+				</ul>
+		</div>
+		<br>
+		<div class="row">
+			<div style="margin-bottom: 10px" class="col-md-3">
+				<a class ="fancybox" href="images/probability.png">
+					<img style="margin-bottom: 65px" class="img-responsive" src="images/probability.png">
+			</a>
+			<small>The networks are chosen by taking their Fitness into account. Network A has almost twice the fitness than network B.</small>
+			</div>
+			<div style="margin-bottom: 10px" class="col-md-6">
+				<a class="fancybox" href="images/Breeding.png">
+					<img style="margin-bottom: 45px" class="img-responsive" src="images/Breeding.png">
+				</a>
+				<small>Network A and B are combined to form the new network C. After this network C will be mutated.</small>
+			</div>
+			<div class="col-md-3">
+				<a class="fancybox" href="images/combining.png">
+					<img style="margin-bottom: 10px" class="img-responsive" src="images/combining.png">
+				</a>
+				<small>The generation N' is being bred using two networks of generation N for each new network.</small>
+			</div>
+		</div>
+		<p>At the beginning of the simulation the controller initializes the first generation, which size can be manually set, with random weights on the synapses (Step 1). When the simulation starts, the first network is used to control the robot and its Fitness is measured (Step 2). After some arbitrary time (we chose 500 simulation steps) the controller switches to the next network and the process starts again until all networks of one generation are tested.</p>
 		<p>The Fitness function we used is</p>
 		<div class="newline-function">
 			<img src="https://latex.codecogs.com/gif.latex?e^{d}-1" />
 		</div>
 		<p>with d being the distance in the direction of the x-axis (forward).</p>
-		<p>After a generation has finished two networks are chosen, using the Fitness value as a means to weighten the probability to use the network to "breed" a new network. During this "breeding process" the weights of the "parents" form the new weights with a chance of 50% to use the weight of one network over the other. After this process of combining the weights of both "parent" networks the weights are mutated, changed with a very small probability. When a new population is "bred" the whole process starts over again.</p>
+		<p>After a generation has finished two networks are chosen, using the Fitness value as a means to weighten the probability to use the network to "breed" a new network (Step 3.1). During this "breeding process" the weights of the "parents" form the new weights with a chance of 50% to use the weight of one network over the other (Step 3.2). After this process of combining the weights of both "parent" networks the weights are mutated, changed with a very small probability (Step 3.3). As each breeding-process only produces one new network, the algorithm chooses N Network pairs to form new networks. This process will repeat until a completely new population is "bred", then the whole process starts over again (Step 4).</p>
 		<hr>
 
 
